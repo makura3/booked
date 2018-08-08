@@ -16,7 +16,7 @@
         <!-- 時間列 24回、端末回数分ループ -->
         <div class="data">
           <div class="data-item">1:00</div>
-          <div class="data-item">x</div>
+          <div class="data-item"><v-btn color="info">予約する</v-btn></div>
           <div class="data-item">x</div>
           <div class="data-item">x</div>
           <div class="data-item">x</div>

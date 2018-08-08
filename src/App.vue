@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       clipped: false,
@@ -49,15 +49,15 @@ export default {
       fixed: false,
       items: [
         {
-          icon: "bubble_chart",
-          title: "Inspire"
+          icon: 'bubble_chart',
+          title: 'Inspire'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "端末予約あぷりけーしょん(仮)"
-    };
+      title: '端末予約あぷりけーしょん(仮)'
+    }
   }
-};
+}
 </script>
