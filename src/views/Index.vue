@@ -5,6 +5,7 @@
         <!-- <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5"> -->
 
         <!-- 使用者表示列（端末分だけひょうじされる） -->
+        <p>{{ getSPList }}</p>
         <div class="head">
           <div class="head-item">時間</div>
           <div class="head-item">A端末</div>
@@ -40,7 +41,26 @@
   </v-container>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions({
+      HOGE: 'HOGE', // `this.HOGE()` を `this.$store.dispatch('HOGE')` にマッピングする
+    })
+  },
+  computed: {
+    ...mapGetters({
+      getSPList: 'getSPList' //get data
+    })
+  },
+  created () {
+    this.HOGE() //call action
+  }
+}
+</script>
+
 <style lang="scss" scoped >
 .head,
 .data {
