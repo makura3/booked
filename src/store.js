@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import firebase from 'firebase'
-// import config from './util/firebaseConfig'
 
 import axios from 'axios'
 import { LOADING, HOGE } from './store/types'
-
-// firebase.initializeApp(config);
 
 
 Vue.use(Vuex)
@@ -27,8 +23,18 @@ export default new Vuex.Store({
   actions: {
     [HOGE]({ commit }){
     axios.get('')
+    // axios.get('http://weather.livedoor.com/forecast/webservice/json/v1?city=400040') //クロスドメイン系の検証
     .then(function (response) {
-      commit('HOGE', response.data)
+      let list = []
+      Object.entries(response.data).forEach(([name,datas]) => {
+        let data = {
+          name: name,
+          type: datas.type,
+          state: datas.state
+        }
+        list.push(data)
+      });
+      commit('HOGE', list)
     })
     .catch(function (error) {
       console.log(error);
