@@ -1,16 +1,15 @@
 <template>
   <v-layout row justify-center>
     <v-dialog
-      v-model="dialog"
+      v-model="isOpen"
       max-width="290"
     >
       <v-card>
         <v-card-title class="headline">端末使用確認</v-card-title>
 
         <v-card-text>
-          {{flg}}
-          使用する端末に間違いがないかご確認ください。
-          選択中の端末：aaa
+          使用する端末に間違いがないかご確認ください。<br>
+          選択中の端末：{{terminalName}}
         </v-card-text>
 
         <v-card-actions>
@@ -19,7 +18,7 @@
           <v-btn
             color="green darken-1"
             flat="flat"
-            @click="dialog = false"
+            @click.stop="close()"
           >
             キャンセル
           </v-btn>
@@ -38,12 +37,7 @@
 </template>
 
 <script>
-  export default {
-    props: ['flg'],
-    data () {
-      return {
-        dialog: false
-      }
-    }
-  }
+export default {
+  props: ['isOpen', 'terminalName', 'close']
+}
 </script>

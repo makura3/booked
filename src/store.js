@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import axios from 'axios'
-import { LOADING, HOGE } from './store/types'
-
+import { LOADING, HOGE, RESERVE } from './store/types'
 
 Vue.use(Vuex)
 
@@ -18,32 +17,40 @@ export default new Vuex.Store({
     },
     [HOGE](state, data) {
       state.smartphoneList = data
+    },
+    [RESERVE](state, data) {
+      state.smartphoneList = data
     }
   },
   actions: {
-    [HOGE]({ commit }){
-    axios.get('')
-    // axios.get('http://weather.livedoor.com/forecast/webservice/json/v1?city=400040') //クロスドメイン系の検証
-    .then(function (response) {
-      let list = []
-      Object.entries(response.data).forEach(([name,datas]) => {
-        let data = {
-          name: name,
-          type: datas.type,
-          state: datas.state
-        }
-        list.push(data)
-      });
-      commit('HOGE', list)
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    .then(function () {
-    })
+    [HOGE]({ commit }) {
+      axios
+        .get(
+          ''
+        )
+        // axios.get('http://weather.livedoor.com/forecast/webservice/json/v1?city=400040') //クロスドメイン系の検証
+        .then(function(response) {
+          let list = []
+          Object.entries(response.data).forEach(([name, datas]) => {
+            let data = {
+              name: name,
+              type: datas.type,
+              state: datas.state
+            }
+            list.push(data)
+          })
+          commit('HOGE', list)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+        .then(function() {})
+    },
+    [RESERVE] ({commit}) {
+      axios.
     }
   },
-  getters : {
+  getters: {
     getSPList: state => {
       return state.smartphoneList
     }

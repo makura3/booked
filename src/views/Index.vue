@@ -16,34 +16,11 @@
       <div class="data">
         <div class="data-item">使用状況</div>
         <div v-for="(data, index) in getSPList" :key="index" class="data-item">
-          <v-btn v-if="data.state" color="info" @click.stop='reserve()'>予約する</v-btn>
+          <v-btn v-if="data.state" color="info" @click.stop='open(data.name)'>予約する</v-btn>
           <v-btn v-else disabled>使用中</v-btn>
         </div>
       </div>
-
-      <!-- 時間列 24回、端末回数分ループ
-      <div class="data">
-        <div class="data-item">1:00</div>
-        <div class="data-item"><v-btn color="info" @click='reserve()'>予約する</v-btn></div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-      </div>
-      <div class="data">
-        <div class="data-item">2:00</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-      </div>
-      <div class="data">
-        <div class="data-item">3:00</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-        <div class="data-item">x</div>
-      </div> -->
-      <Dialog v-bind:flg="false" />
+      <Dialog v-bind:isOpen="isOpen" v-bind:terminalName='terminalName' v-bind:close='close' />
     </v-layout>
   </v-container>
 </template>
@@ -56,15 +33,22 @@ export default {
   components: {
     Dialog
   },
-  data: {
-    flg: false
+  data: function() {
+    return {
+      isOpen: false,
+      terminalName: ''
+    }
   },
   methods: {
     ...mapActions({
-      HOGE: 'HOGE', // `this.HOGE()` を `this.$store.dispatch('HOGE')` にマッピングする
+      HOGE: 'HOGE' // `this.HOGE()` を `this.$store.dispatch('HOGE')` にマッピングする
     }),
-    reserve() {
-      this.flg = true
+    open(name) {
+      this.isOpen = true
+      this.terminalName = name
+    },
+    close() {
+      this.isOpen = false
     }
   },
   computed: {
@@ -72,7 +56,7 @@ export default {
       getSPList: 'getSPList' //get data
     })
   },
-  created () {
+  created() {
     this.HOGE() //call action
   }
 }
