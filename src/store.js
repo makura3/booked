@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import axios from 'axios'
-import { LOADING, HOGE, RESERVE } from './store/types'
+import { LOADING, INIT, RESERVE } from './store/types'
 
 Vue.use(Vuex)
 
@@ -15,7 +15,7 @@ export default new Vuex.Store({
     [LOADING](state, isLoading) {
       state.loading = isLoading
     },
-    [HOGE](state, data) {
+    [INIT](state, data) {
       state.smartphoneList = data
     },
     [RESERVE](state, data) {
@@ -23,11 +23,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    [HOGE]({ commit }) {
+    [INIT]({ commit }) {
       axios
-        .get(
-          ''
-        )
+        .get('')
         // axios.get('http://weather.livedoor.com/forecast/webservice/json/v1?city=400040') //クロスドメイン系の検証
         .then(function(response) {
           let list = []
@@ -39,15 +37,15 @@ export default new Vuex.Store({
             }
             list.push(data)
           })
-          commit('HOGE', list)
+          commit('INIT', list)
         })
         .catch(function(error) {
           console.log(error)
         })
         .then(function() {})
     },
-    [RESERVE] ({commit}) {
-      axios.
+    [RESERVE]() {
+      axios.get('')
     }
   },
   getters: {

@@ -20,14 +20,14 @@
           <v-btn v-else disabled>使用中</v-btn>
         </div>
       </div>
-      <Dialog v-bind:isOpen="isOpen" v-bind:terminalName='terminalName' v-bind:close='close' />
+      <Dialog :isOpen="isOpen" :terminalName='terminalName' :close='close' :ok='ok' :title='title'  />
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Dialog from './../components/Dialog'
+import Dialog from './../components/organisms/Dialog'
 
 export default {
   components: {
@@ -36,12 +36,13 @@ export default {
   data: function() {
     return {
       isOpen: false,
-      terminalName: ''
+      terminalName: '',
+      title: '端末使用確認'
     }
   },
   methods: {
     ...mapActions({
-      HOGE: 'HOGE' // `this.HOGE()` を `this.$store.dispatch('HOGE')` にマッピングする
+      INIT: 'INIT'
     }),
     open(name) {
       this.isOpen = true
@@ -49,6 +50,10 @@ export default {
     },
     close() {
       this.isOpen = false
+    },
+    ok() {
+      //なまえどうしよう
+      console.log('aaaaa')
     }
   },
   computed: {
@@ -57,7 +62,7 @@ export default {
     })
   },
   created() {
-    this.HOGE() //call action
+    this.INIT() //call action
   }
 }
 </script>
