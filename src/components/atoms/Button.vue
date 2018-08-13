@@ -1,12 +1,12 @@
 <template>
-  <button type="button" class="btn" @click.stop='event()'>
+  <button type="button" class="btn" @click.stop='handler()'>
     {{ text }}
   </button>
 </template>
 
 <script>
 export default {
-  props: ['event', 'text']
+  props: ['handler', 'text']
 }
 </script> 
 
@@ -17,10 +17,20 @@ export default {
   color: $white;
   display: inline-flex;
   padding: 10px;
+  position: relative;
 
   @include min-mq(sm) {
     &:hover {
-      background-color: currentColor;
+      &::before {
+        background-color: currentColor;
+        bottom: 0;
+        content: '';
+        left: 0;
+        opacity: 0.3;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
     }
   }
 }

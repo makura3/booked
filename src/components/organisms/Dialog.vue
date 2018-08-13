@@ -5,12 +5,11 @@
         {{ title }}
       </div>
       <div class="panel__text">
-        使用する端末に間違いがないかご確認ください。<br>
-         選択中の端末：{{ terminalName }}
+        {{ content }}
       </div>
       <div class="panel__actions">
-        <Btn :text='closeText' :event='close' />
-        <Btn :text='openText' :event='ok' />
+        <Btn :text='closeText' :handler='close' />
+        <Btn :text='openText' :handler='confirm' />
       </div>
     </div>
   </div>
@@ -22,7 +21,7 @@ export default {
   components: {
     Btn
   },
-  props: ['isOpen', 'terminalName', 'close', 'ok', 'title'],
+  props: ['isOpen', 'content', 'close', 'confirm', 'title'],
   data: function() {
     return {
       closeText: 'キャンセル',
